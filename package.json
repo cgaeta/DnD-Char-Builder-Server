@@ -1,0 +1,26 @@
+{
+  "name": "dnd-char-builder-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cgaeta/DnD-Char-Builder-Server.git"
+  },
+  "author": "cgaeta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cgaeta/DnD-Char-Builder-Server/issues"
+  },
+  "homepage": "https://github.com/cgaeta/DnD-Char-Builder-Server#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "express-graphql": "^0.6.11",
+    "express-http-proxy": "^1.1.0",
+    "graphql": "^0.13.0",
+    "mongodb": "^3.0.2"
+  }
+}
