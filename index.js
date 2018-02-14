@@ -1,5 +1,4 @@
 var MongoClient = require('mongodb').MongoClient;
-var proxy = require('express-http-proxy');
 var express = require('express');
 var graphqlHTTP = require('express-graphql');
 var { buildSchema } = require('graphql');
@@ -292,12 +291,10 @@ app.all('/', (req, res, next) => {
   next();
 });
 
-app.use(express.static('dist'));
-app.use('/graphql', graphqlHTTP({
+app.use('/', graphqlHTTP({
   schema: schema,
   rootValue: root,
   graphiql: true
 }));
-app.use('*', proxy('localhost:4000/'));
 app.listen(4000);
 console.log('Running a GraphQL API server at localhost:4000/graphql');
