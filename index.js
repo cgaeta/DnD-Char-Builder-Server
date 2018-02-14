@@ -309,8 +309,14 @@ var root = {
 var app = express();
 app.all('/', (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
+  res.header("Access-Control-Allow-Headers", "content-type, authorization, content-length, accept, origin, X-Requested-With");
+  res.header("Allow", "POST, GET, OPTIONS");
+
+  if (req.method === "OPTIONS") {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
 });
 
 app.use('/', graphqlHTTP({
