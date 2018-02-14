@@ -3,23 +3,45 @@ var express = require('express');
 var graphqlHTTP = require('express-graphql');
 var { buildSchema } = require('graphql');
 
-var mongoUrl = 'mongodb://cgaetatest.com:pswddbtest';
+var mongoUrl = 'mongodb://cgaetatest:pswddbtest@ds123658.mlab.com:23658/testdatabase';
 var dbName = 'testdatabase';
 
 MongoClient.connect(mongoUrl)
 .then((client, err) => {
-  return new Promise((resolve, reject) => {
+  return Promise.all([new Promise((resolve, reject) => {
     if (err) {
-      console.log(err);
       reject(err);
     }
 
     resolve(client.db(dbName)
-    .collection('jobs')
-    .find({})
-    .toArray());
-  });
+      .collection('jobs')
+      .find({})
+      .toArray());
+  }),
+  new Promise((resolve, reject) => {
+    if (err) {
+      reject(err);
+    }
+
+    resolve(client.db(dbName)
+      .collection('features')
+      .find({})
+      .toArray());
+  })])
 })
+// .then((client, err) => {
+//   return new Promise((resolve, reject) => {
+//     if (err) {
+//       console.log(err);
+//       reject(err);
+//     }
+//
+//     resolve(client.db(dbName)
+//     .collection('jobs')
+//     .find({})
+//     .toArray());
+//   });
+// })
 .then((docs, err) => console.log(docs));
 
 var schema = buildSchema(`
