@@ -4,8 +4,8 @@ var express = require('express');
 var graphqlHTTP = require('express-graphql');
 var { buildSchema } = require('graphql');
 
-var mongoUrl = 'mongodb://localhost:27017/htaccess';
-var dbName = 'testDB';
+var mongoUrl = 'mongodb://cgaetatest.com:pswddbtest';
+var dbName = 'testdatabase';
 
 MongoClient.connect(mongoUrl)
 .then((client, err) => {
