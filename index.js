@@ -286,6 +286,12 @@ var root = {
 };
 
 var app = express();
+app.all('/', (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+
 app.use(express.static('dist'));
 app.use('/graphql', graphqlHTTP({
   schema: schema,
