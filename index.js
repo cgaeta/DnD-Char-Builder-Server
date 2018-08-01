@@ -3,8 +3,8 @@ var express = require('express');
 var graphqlHTTP = require('express-graphql');
 var { buildSchema } = require('graphql');
 
-var mongoUrl = 'mongodb://cgaetatest:pswddbtest@ds123658.mlab.com:23658/testdatabase';
-var dbName = 'testdatabase';
+var mongoUrl = env.mongo_db;
+var dbName = env.db_name;
 
 MongoClient.connect(mongoUrl)
 .then((client, err) => {
